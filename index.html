@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundScape Mood Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+  <canvas id="atmosphere"></canvas>
+  <div id="mood-overlay"></div>
+
+  <audio id="audio-calm"   src="audio/calm-rain.mp3"   loop preload="auto"></audio>
+  <audio id="audio-focus"  src="audio/focus-room.mp3"  loop preload="auto"></audio>
+  <audio id="audio-unwind" src="audio/warm-wind.mp3" loop preload="auto"></audio>
+
+  <div class="app">
+    <header class="header">
+      <h1 class="brand">SoundScape<sup>·MM</sup></h1>
+      <div class="header-meta">
+        <div>Mood · <span id="status">awaiting</span></div>
+        <div class="clock" id="clock">—</div>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="selection" id="selection">
+        <p class="eyebrow">An atlas for your inner weather</p>
+        <h2 class="lead">What does <em>now</em><br>feel like?</h2>
+        <p class="sub">Choose a mood. The room will respond.</p>
+
+        <div class="orbs">
+          <button class="orb" data-mood="calm" aria-label="Select Calm mood">
+            <div class="orb-visual"></div>
+            <div class="orb-label">Calm</div>
+            <span class="orb-tag">soft rain · slow tide</span>
+          </button>
+          <button class="orb" data-mood="focus" aria-label="Select Focus mood">
+            <div class="orb-visual"></div>
+            <div class="orb-label">Focus</div>
+            <span class="orb-tag">warm room · low hum</span>
+          </button>
+          <button class="orb" data-mood="unwind" aria-label="Select Unwind mood">
+            <div class="orb-visual"></div>
+            <div class="orb-label">Unwind</div>
+            <span class="orb-tag">long wind · dusk</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="active-screen" id="active">
+        <div class="quote">
+          <div class="quote-mark">&ldquo;</div>
+          <p class="quote-text" id="quote-text">Listening for something worth saying…</p>
+          <p class="quote-attr">A small thought · <span id="quote-source">—</span></p>
+        </div>
+        <div class="breath" id="breath"></div>
+        <div class="switcher" id="switcher">
+          <button class="switch-dot" data-mood="calm"   aria-label="Switch to Calm"></button>
+          <button class="switch-dot" data-mood="focus"  aria-label="Switch to Focus"></button>
+          <button class="switch-dot" data-mood="unwind" aria-label="Switch to Unwind"></button>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>SoundScape · <span style="opacity:0.6">a sonic ritual</span></div>
+      <div class="controls" id="controls">
+        <div class="vol-wrap">
+          <span class="vol-label">Volume</span>
+          <input type="range" min="0" max="100" value="40" class="vol-slider" id="vol" aria-label="Volume">
+        </div>
+        <button class="new-quote" id="newQuote">New thought</button>
+        <button class="ctrl-btn" id="release">Release</button>
+      </div>
+    </footer>
+  </div>
+  <script src="scripts/script.js"></script>
+</body>
+</html>
